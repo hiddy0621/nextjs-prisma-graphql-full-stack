@@ -6,8 +6,8 @@ export default function Home() {
       <Head>
         <title>HOMEEEEEE</title>
       </Head>
-      <main className='text-blue-400' style={{ fontSize: "4rem" }}>
-        FULL 
+      <main className="text-blue-400" style={{ fontSize: '4rem' }}>
+        FULL
       </main>
     </div>
   )
