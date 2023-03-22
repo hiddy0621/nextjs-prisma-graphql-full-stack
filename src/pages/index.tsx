@@ -1,14 +1,19 @@
-import Head from 'next/head'
+import { signIn, signOut ,useSession } from "next-auth/react"
 
-export default function Home() {
+export default function Component() {
+  const { data: session } = useSession()
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user?.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    )
+  }
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      <Head>
-        <title>HOMEEEEEE</title>
-      </Head>
-      <main className="text-blue-400" style={{ fontSize: '4rem' }}>
-        FULL
-      </main>
-    </div>
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
   )
 }
