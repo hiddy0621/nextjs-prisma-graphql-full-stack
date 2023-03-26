@@ -1,9 +1,11 @@
-import { useAddTodoMutation, useDeleteTodoMutation, useTodosQuery, useUpdateTodoMutation } from "@/generated/request"
+import type { FC, FormEventHandler} from "react";
+import { FormEvent,useEffect, useState } from "react"
+
 import type { TodosQuery } from '@/generated/request' // 型情報が欲しいとき
-import { FC, useState, useEffect, FormEvent, FormEventHandler } from "react"
+import { useAddTodoMutation, useDeleteTodoMutation, useTodosQuery, useUpdateTodoMutation } from "@/generated/request"
 
 export const TodoList: FC = () => {
-  // const [todoTitle, setTodoTitle] = useState('')
+  const [todoTitle, setTodoTitle] = useState('')
   const [todos, setTodos] = useState<TodosQuery['todos']>([])
   // ジェネレートされたHooks
   const { loading, error, data, refetch } = useTodosQuery()
@@ -22,27 +24,27 @@ export const TodoList: FC = () => {
   // ローディング / エラー / Todos がないときのリターン
   if (loading) return <div>loading...</div>
   if (error) return <div>error...!</div>
-  if (!data?.todos) return <h3>You haven't added items yet</h3>
+  if (!data?.todos) return <h3>You havent added items yet</h3>
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     // 今回は useState でテキストの状態管理はしないで
     // input 要素の value を参照
-    const { value: title } = (e.target as any).title
-    const input = e.currentTarget.querySelector("input") as HTMLInputElement
+    // const { value: title } = (e.target as any).title
+    // const input = e.currentTarget.querySelector("input") as HTMLInputElement
 
     // mutation を使って追加
     const { data } = await addTodoMutation({
-      variables: { title: title }
+      variables: { title: todoTitle }
     })
 
     // mutation の返り値の todo
     const addedTodo = data?.addTodo
     if (!addedTodo) return
     setTodos([addedTodo, ...todos])
-    
+    setTodoTitle('')
     // アイテム追加できたら、input の value を空に
-    input!.value = ''
+    // input!.value = ''
     // リストを更新
     await refetch()
   }
@@ -82,14 +84,15 @@ export const TodoList: FC = () => {
           <input
             type="text"
             name="title"
-            defaultValue=""
+            value={todoTitle}
+            onChange={(e) => setTodoTitle(e.target.value)}
             className="p-2 mt-2 block bg-gray-100"
           />
-          <button className="bg-cyan-400 text-white p-2 mt-2">リストに追加</button>
+          <button className="bg-cyan-400 text-white p-2 mt-2">追加する</button>
         </label>
       </form>
       <ul className="mt-5">
-        {!todos.length && <span>You haven't added items yet</span>}
+        {!todos.length && <span>You havent added items yet</span>}
         {todos.map((todo) => {
           return (
             <li key={todo.id} className={`${todo.completed && 'line-through'}`}>
