@@ -80,7 +80,7 @@ export const TodoList: FC = () => {
       <h3 className="text-xl">Todo List</h3>
       <form onSubmit={handleSubmit} className="flex gap-2 mt-2">
         <label>
-          <h4 className="text-xs">タイトル</h4>
+          <h4 className="text-xs">リストのタイトル</h4>
           <input
             type="text"
             name="title"
