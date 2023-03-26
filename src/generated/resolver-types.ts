@@ -21,7 +21,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addTodo: Todo;
   deleteTodo: Todo;
-  udpateTodo: Todo;
+  updateTodo: Todo;
 };
 
 
@@ -35,9 +35,9 @@ export type MutationDeleteTodoArgs = {
 };
 
 
-export type MutationUdpateTodoArgs = {
-  completed: Scalars['Boolean'];
-  title: Scalars['String'];
+export type MutationUpdateTodoArgs = {
+  completed?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
   todoId: Scalars['String'];
 };
 
@@ -162,7 +162,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationAddTodoArgs, 'title'>>;
   deleteTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, 'todoId'>>;
-  udpateTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUdpateTodoArgs, 'completed' | 'title' | 'todoId'>>;
+  updateTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTodoArgs, 'todoId'>>;
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

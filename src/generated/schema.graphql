@@ -3,7 +3,7 @@ scalar DateTime
 type Mutation {
   addTodo(title: String!): Todo!
   deleteTodo(todoId: String!): Todo!
-  udpateTodo(completed: Boolean!, title: String!, todoId: String!): Todo!
+  updateTodo(completed: Boolean, title: String, todoId: String!): Todo!
 }
 
 type Query {

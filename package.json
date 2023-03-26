@@ -16,6 +16,7 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.10",
     "@graphql-tools/graphql-file-loader": "7.5.14",
     "@graphql-tools/load": "7.8.9",
     "@graphql-tools/schema": "9.0.13",
@@ -44,8 +45,8 @@
     "@graphql-codegen/cli": "^3.2.2",
     "@graphql-codegen/schema-ast": "2.6.1",
     "@graphql-codegen/typescript": "2.8.7",
-    "@graphql-codegen/typescript-operations": "2.5.12",
-    "@graphql-codegen/typescript-react-apollo": "3.3.7",
+    "@graphql-codegen/typescript-operations": "^3.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@graphql-codegen/typescript-resolvers": "2.7.12",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",

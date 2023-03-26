@@ -27,7 +27,7 @@ export const resolvers: Resolvers = {
       })
       return todo
     },
-    udpateTodo: async (
+    updateTodo: async (
       _,
       { todoId, title, completed },
       { prisma, currentUser }

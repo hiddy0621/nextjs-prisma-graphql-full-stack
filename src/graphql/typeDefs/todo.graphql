@@ -14,7 +14,7 @@ type Query {
 
 type Mutation {
   addTodo(title: String!): Todo!
-  udpateTodo(todoId: String!, completed: Boolean!, title: String!): Todo!
+  updateTodo(todoId: String!, completed: Boolean, title: String): Todo!
   deleteTodo(todoId: String!): Todo!
 }
 
@@ -41,14 +41,14 @@ mutation AddTodo($title: String!) {
   }
 }
 
-mutation UpdateTodo($todoId: String!, $completed: Boolean!, $title: String!) {
-  udpateTodo(todoId: $todoId, completed: $completed, title: $title) {
+mutation UpdateTodo($todoId: String!, $completed: Boolean, $title: String) {
+  updateTodo(todoId: $todoId, completed: $completed, title: $title) {
     ...TodoFragment
   }
 }
 
-mutation DeleteTodo($title: String!) {
-  deleteTodo(title: $title) {
+mutation DeleteTodo($todoId: String!) {
+  deleteTodo(todoId: $todoId) {
     ...TodoFragment
   }
 }
