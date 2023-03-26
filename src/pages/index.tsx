@@ -1,5 +1,6 @@
-import { TodoList } from "@/components/TodoList"
-import { signIn, signOut ,useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from 'next-auth/react'
+
+import { TodoList } from '@/components/TodoList'
 
 export default function Component() {
   const { data: session } = useSession()
@@ -15,7 +16,9 @@ export default function Component() {
   return (
     <div className="container mx-auto p-3">
       Not signed in <br />
-      <button className="p-3 bg-green-400 text-white"  onClick={() => signIn()}>Sign in</button>
+      <button className="p-3 bg-green-400 text-white" onClick={() => signIn()}>
+        Sign in
+      </button>
     </div>
   )
 }

@@ -1,6 +1,12 @@
-import type { MockedResponse } from '@apollo/client/testing';
+import type { MockedResponse } from '@apollo/client/testing'
 
-import { type Todo,AddTodoDocument, DeleteTodoDocument, TodosDocument, UpdateTodoDocument } from "@/generated/request";
+import {
+  type Todo,
+  AddTodoDocument,
+  DeleteTodoDocument,
+  TodosDocument,
+  UpdateTodoDocument,
+} from '@/generated/request'
 
 function generateTodoMock(): Todo {
   return {

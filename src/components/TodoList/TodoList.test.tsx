@@ -10,18 +10,18 @@ import { TodoList } from '.'
 
 test('ローディング画面が正しくレンダーされるか', () => {
   customRender(<TodoList />),
-  // 存在が絶対に望まれるものは get
-  expect(screen.getByText('loading...')).toBeInTheDocument()  
+    // 存在が絶対に望まれるものは get
+    expect(screen.getByText('loading...')).toBeInTheDocument()
 })
 
 test('Todoリストが正しくレンダリングされるか', async () => {
   customRender(<TodoList />),
-  // バリデーションや時間がかかる処理に対しては find
-  expect(await screen.findByText('Todo List')).toBeInTheDocument()
+    // バリデーションや時間がかかる処理に対しては find
+    expect(await screen.findByText('Todo List')).toBeInTheDocument()
 })
 
 test('リストアイテムが正しく追加されるかどうか', async () => {
-  const { user } = customRender(<TodoList/>)
+  const { user } = customRender(<TodoList />)
   // TodoList のタイトル入力
   const textbox = await screen.findByRole('textbox')
   // addTodoイベントを実行

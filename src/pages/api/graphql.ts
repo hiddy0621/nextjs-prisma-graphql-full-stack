@@ -1,16 +1,18 @@
-import { createContext } from './../../graphql/context';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { loadSchemaSync } from '@graphql-tools/load'
 import { addResolversToSchema } from '@graphql-tools/schema'
+import { ApolloServer } from 'apollo-server-micro'
 import Cors from 'micro-cors'
-import { resolvers } from '@/graphql/resolvers';
-import { ApolloServer } from 'apollo-server-micro';
+
+import { resolvers } from '@/graphql/resolvers'
+
+import { createContext } from './../../graphql/context'
 
 const cors = Cors()
 
 // ジェネレート済みのスキーマ
 const schema = loadSchemaSync('src/generated/schema.graphql', {
-  loaders: [new GraphQLFileLoader()]
+  loaders: [new GraphQLFileLoader()],
 })
 
 // スキーマにリゾルバーを当てこむ
@@ -21,7 +23,7 @@ const apolloServer = new ApolloServer({
   // リゾルバー付きのスキーマ
   schema: schemaWithResolvers,
   // ユーザーセッションのためのコンテキスト注入
-  context: createContext
+  context: createContext,
 })
 
 const startServer = apolloServer.start()

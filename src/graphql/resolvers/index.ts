@@ -1,4 +1,3 @@
-import { prisma } from '@/libs/prisma';
 import type { Resolvers } from '@/generated/resolver-types'
 
 export const resolvers: Resolvers = {
@@ -11,10 +10,10 @@ export const resolvers: Resolvers = {
       const todos = await prisma.todo.findMany({
         orderBy: { createdAt: 'desc' },
         include: { user: true },
-        where: { userId: currentUser.id }
+        where: { userId: currentUser.id },
       })
       return todos
-    }
+    },
   },
   Mutation: {
     addTodo: async (_, { title }, { prisma, currentUser }) => {
@@ -23,7 +22,7 @@ export const resolvers: Resolvers = {
       }
       const todo = await prisma.todo.create({
         data: { userId: currentUser.id, title },
-        include: { user: true }
+        include: { user: true },
       })
       return todo
     },
@@ -48,9 +47,11 @@ export const resolvers: Resolvers = {
           // title: title && title,
           ...(title && { title }),
           // complete も同様
-          ...(completed !== undefined && completed !== null ? { completed } : {})
+          ...(completed !== undefined && completed !== null
+            ? { completed }
+            : {}),
         },
-        include: { user: true }
+        include: { user: true },
       })
       return todo
     },
@@ -68,5 +69,5 @@ export const resolvers: Resolvers = {
       })
       return todo
     },
-  }
+  },
 }

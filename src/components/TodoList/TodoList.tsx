@@ -1,8 +1,13 @@
-import type { FC, FormEventHandler} from "react";
-import { FormEvent,useEffect, useState } from "react"
+import type { FC, FormEventHandler } from 'react'
+import { useEffect, useState } from 'react'
 
 import type { TodosQuery } from '@/generated/request' // 型情報が欲しいとき
-import { useAddTodoMutation, useDeleteTodoMutation, useTodosQuery, useUpdateTodoMutation } from "@/generated/request"
+import {
+  useAddTodoMutation,
+  useDeleteTodoMutation,
+  useTodosQuery,
+  useUpdateTodoMutation,
+} from '@/generated/request'
 
 export const TodoList: FC = () => {
   const [todoTitle, setTodoTitle] = useState('')
@@ -20,7 +25,7 @@ export const TodoList: FC = () => {
     // Todosがあれば入れてやって、なければ空配列のまま
     setTodos(data?.todos ?? [])
   }, [data?.todos])
-  
+
   // ローディング / エラー / Todos がないときのリターン
   if (loading) return <div>loading...</div>
   if (error) return <div>error...!</div>
@@ -35,7 +40,7 @@ export const TodoList: FC = () => {
 
     // mutation を使って追加
     const { data } = await addTodoMutation({
-      variables: { title: todoTitle }
+      variables: { title: todoTitle },
     })
 
     // mutation の返り値の todo
@@ -49,7 +54,7 @@ export const TodoList: FC = () => {
     await refetch()
   }
 
-   const handleChange = async (
+  const handleChange = async (
     todoId: string,
     completed: boolean
   ): Promise<void> => {
